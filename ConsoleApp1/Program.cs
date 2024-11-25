@@ -18,8 +18,8 @@ namespace ConsoleApp1
             double exactValue = g(a_f, b_f); // Точное значение интеграла
             
             var table = new ConsoleTable("n", "Приближенное значение", "Точное значение", "Дельта K", "Дельта точное", "Дельта Рунге", "Дельта теор.");
-            var table2 = new ConsoleTable("n", "Приближенное значение", "Дельта K", "Дельта Рунге", "Дельта теор.");
-            var table3 = new ConsoleTable("n", "Приближенное значение", "Дельта K", "Дельта Рунге", "Дельта теор.");
+            var table2 = new ConsoleTable("n", "Приближенное значение", "Дельта K", "Дельта Рунге");
+            var table3 = new ConsoleTable("n", "Приближенное значение", "Дельта K", "Дельта Рунге");
 
             for (int n = 1; n<=65536; n *= 2)
             {
@@ -36,17 +36,15 @@ namespace ConsoleApp1
                 double approxValue1 = SimpsonMethod(a1_f1, b1_f1, n, h1, f1); // Метод Симпсона
                 approxValues1.Add(approxValue1);
                 string rungeEstimate1 = getDeltaRunge(a1_f1, b1_f1, n, approxValues1) == 0 ? "-" : getDeltaRunge(a1_f1, b1_f1, n, approxValues1).ToString();
-                double deltaTeor1 = getTeorDelta(a1_f1, b1_f1, h1);
                 string K1 = getK(a1_f1, b1_f1, h1, n, approxValues1) == 0 ? "-" : getK(a1_f1, b1_f1, h1, n, approxValues1).ToString();
-                table2.AddRow(n, $"{approxValue1}", $"{K1}", $"{rungeEstimate1}", $"{deltaTeor1}");
+                table2.AddRow(n, $"{approxValue1}", $"{K1}", $"{rungeEstimate1}");
 
                 double h2 = (b2_f1 - a2_f1) / n;
                 double approxValue2 = SimpsonMethod(a2_f1, b2_f1, n, h2, f1); // Метод Симпсона
                 approxValues2.Add(approxValue2);
                 string rungeEstimate2 = getDeltaRunge(a2_f1, b2_f1, n, approxValues2) == 0 ? "-" : getDeltaRunge(a2_f1, b2_f1, n, approxValues2).ToString();
-                double deltaTeor2 = getTeorDelta(a2_f1, b2_f1, h2);
                 string K2 = getK(a2_f1, b2_f1, h2, n, approxValues2) == 0? "-": getK(a2_f1, b2_f1, h2, n, approxValues2).ToString();
-                table3.AddRow(n, $"{approxValue2}", $"{K2}", $"{rungeEstimate2}", $"{deltaTeor2}");
+                table3.AddRow(n, $"{approxValue2}", $"{K2}", $"{rungeEstimate2}");
 
             }
             Console.WriteLine("Функция f(x) = 6*x^5");
@@ -113,9 +111,10 @@ namespace ConsoleApp1
             double max = -999999999;
             for (double i = a; i<= b; i += h)
             {
-                if (720 * i > max)
+                double res = f(i);
+                if (res > max)
                 {
-                    max = 720 * i;
+                    max = res;
                 }
             }
             return (b-a)*max;
