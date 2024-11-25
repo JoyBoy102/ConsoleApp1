@@ -75,7 +75,7 @@ namespace ConsoleApp1
         //Функция f(x) = x^(1/30)*sqrt(1+x^2)
         public static double f1(double x)
         {
-            return Math.Pow(x, (1/30))*Math.Sqrt(1+Math.Pow(x, 2));
+            return Math.Pow(x, (1.0 / 30)) * Math.Sqrt(1 + Math.Pow(x, 2));
         }
 
 
@@ -140,5 +140,6 @@ namespace ConsoleApp1
             }
             return 0;
         }
+        
     }
 }
