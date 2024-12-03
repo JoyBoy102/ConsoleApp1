@@ -17,9 +17,9 @@ namespace ConsoleApp1
             double b2_f1 = 1.5;
             double exactValue = g(a_f, b_f); // Точное значение интеграла
             
-            var table = new ConsoleTable("n", "Приближенное значение", "Точное значение", "Дельта K", "Дельта точное", "Дельта Рунге", "Дельта теор.");
-            var table2 = new ConsoleTable("n", "Приближенное значение", "Дельта K", "Дельта Рунге");
-            var table3 = new ConsoleTable("n", "Приближенное значение", "Дельта K", "Дельта Рунге");
+            var table = new ConsoleTable("n", "Priblizennoe zna4enie", "To4noe zna4enie", "Delta K", "Delta to4noe", "Delta Runge", "Delta teor.");
+            var table2 = new ConsoleTable("n", "Priblizennoe zna4enie", "Delta K", "Delta Runge");
+            var table3 = new ConsoleTable("n", "Priblizennoe zna4enie", "Delta K", "Delta Runge");
 
             for (int n = 1; n<=65536; n *= 2)
             {
@@ -47,11 +47,11 @@ namespace ConsoleApp1
                 table3.AddRow(n, $"{approxValue2}", $"{K2}", $"{rungeEstimate2}");
 
             }
-            Console.WriteLine("Функция f(x) = 6*x^5");
+            Console.WriteLine("Function f(x) = 6*x^5");
             table.Write();
-            Console.WriteLine("Функция f(x) = x^(1/30)*sqrt(1+x^2) a=0 b=1.5");
+            Console.WriteLine("Function f(x) = x^(1/30)*sqrt(1+x^2) a=0 b=1.5");
             table2.Write();
-            Console.WriteLine("Функция f(x) = x^(1/30)*sqrt(1+x^2) a=0.001 b=1.5");
+            Console.WriteLine("Function f(x) = x^(1/30)*sqrt(1+x^2) a=0.001 b=1.5");
             table3.Write();
         }
 
